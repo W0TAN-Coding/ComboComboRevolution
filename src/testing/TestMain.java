@@ -19,7 +19,7 @@ public class TestMain {
         Move mAT = new Move(1, 0, Keys.RIGHT, Keys.E);
 
         Combo c2A5B2B2C = new Combo(m2A, m5B, m2B, m2C);
-        Combo full = new Combo(m2C, m3C, mj9, maB, maC, mj9, maB, maC, mAT);
+        Combo full = new Combo(m2A, m5B, m2B, m2C, m3C, mj9, maB, maC, mj9, maB, maC, mAT);
 
         Generator gen = new Generator("Test 2");
         try {

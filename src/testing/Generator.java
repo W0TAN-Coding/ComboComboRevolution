@@ -53,10 +53,10 @@ public class Generator {
             for(Keys key : move.getInput()) {
                 sb.append("\tKeyboard.press(").append(key.name()).append(");\n");
             }
-            sb.append("\tdelay(").append(Math.max(1, (1/2f) * move.getStartup())).append("L * frameLength + 4);\n");
+            sb.append("\tdelay(").append(Math.max(1, (1/2f) * move.getStartup())).append("L * frameLength + 6);\n");
             sb.append("\tKeyboard.releaseAll();\n");
 
-            sb.append("\tdelay(").append(Math.max(1, (1/2f) * move.getStartup()) + move.getHitstop()).append("L * frameLength + 4);\n");
+            sb.append("\tdelay(").append(Math.max(1, (1/2f) * move.getStartup()) + move.getHitstop()).append("L * frameLength + 6);\n");
 
             lastMove = move;
         }
