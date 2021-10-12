@@ -1,0 +1,74 @@
+#include <Keyboard.h>
+
+boolean risingEdge;
+long frameLength = 1000/60;
+
+int UP = 119;
+int DOWN = 115;
+int LEFT = 97;
+int RIGHT = 100;
+int A = 117;
+int B = 105;
+int C = 111;
+int D = 32;
+int E = 106;
+
+void setup() {
+	pinMode(1, INPUT_PULLUP);
+	Keyboard.begin();
+	risingEdge = false;
+}
+
+void loop() {
+	if(!digitalRead(1) && !risingEdge) {
+		risingEdge = true;
+		combo();
+	} else if(digitalRead(1)){
+		risingEdge = false;
+	}
+}
+
+void combo() {
+	Keyboard.press(DOWN);
+	Keyboard.press(C);
+	delay(4.0L * frameLength + 4);
+	Keyboard.releaseAll();
+	delay(14.0L * frameLength + 4);
+	Keyboard.press(DOWN);
+	Keyboard.press(C);
+	Keyboard.press(RIGHT);
+	delay(4.5L * frameLength + 4);
+	Keyboard.releaseAll();
+	delay(14.5L * frameLength + 4);
+	Keyboard.press(UP);
+	Keyboard.press(RIGHT);
+	delay(1.0L * frameLength + 4);
+	Keyboard.releaseAll();
+	delay(6.0L * frameLength + 4);
+	Keyboard.press(B);
+	delay(2.0L * frameLength + 4);
+	Keyboard.releaseAll();
+	delay(10.0L * frameLength + 4);
+	Keyboard.press(C);
+	delay(4.0L * frameLength + 4);
+	Keyboard.releaseAll();
+	delay(14.0L * frameLength + 4);
+	Keyboard.press(UP);
+	Keyboard.press(RIGHT);
+	delay(1.0L * frameLength + 4);
+	Keyboard.releaseAll();
+	delay(6.0L * frameLength + 4);
+	Keyboard.press(B);
+	delay(2.0L * frameLength + 4);
+	Keyboard.releaseAll();
+	delay(10.0L * frameLength + 4);
+	Keyboard.press(C);
+	delay(4.0L * frameLength + 4);
+	Keyboard.releaseAll();
+	delay(14.0L * frameLength + 4);
+	Keyboard.press(E);
+	Keyboard.press(RIGHT);
+	delay(1.0L * frameLength + 4);
+	Keyboard.releaseAll();
+	delay(1.0L * frameLength + 4);
+}

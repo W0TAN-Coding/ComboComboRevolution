@@ -1,0 +1,51 @@
+#include <Keyboard.h>
+
+boolean risingEdge;
+long frameLength = 1000/60;
+
+int UP = 119;
+int DOWN = 115;
+int LEFT = 97;
+int RIGHT = 100;
+int A = 117;
+int B = 105;
+int C = 111;
+int D = 32;
+int E = 106;
+
+void setup() {
+	pinMode(1, INPUT_PULLUP);
+	Keyboard.begin();
+	risingEdge = false;
+}
+
+void loop() {
+	if(!digitalRead(1) && !risingEdge) {
+		risingEdge = true;
+		combo();
+	} else if(digitalRead(1)){
+		risingEdge = false;
+	}
+}
+
+void combo() {
+	delay(3L * frameLength);
+	Keyboard.press(115);
+	Keyboard.press(117);
+	delay(1L * frameLength + 5);
+	Keyboard.releaseAll();
+	delay(12L * frameLength);
+	Keyboard.press(105);
+	delay(1L * frameLength + 5);
+	Keyboard.releaseAll();
+	delay(13L * frameLength);
+	Keyboard.press(115);
+	Keyboard.press(105);
+	delay(1L * frameLength + 5);
+	Keyboard.releaseAll();
+	delay(14L * frameLength);
+	Keyboard.press(115);
+	Keyboard.press(111);
+	delay(1L * frameLength + 5);
+	Keyboard.releaseAll();
+}
