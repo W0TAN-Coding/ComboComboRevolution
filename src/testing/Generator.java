@@ -27,7 +27,7 @@ public class Generator {
     private void createHeader() throws IOException {
         String include = "#include <Keyboard.h>\n\n";
         String risingEdge = "boolean risingEdge;\n";
-        String frameLength = "long frameLength = 1000/60;\n\n";
+        String frameLength = "float frameLength = 1000.0/60.0;\n\n";
         StringBuilder asciiBuilder = new StringBuilder();
         for(Keys k : Keys.getAllKeybinds()) {
             asciiBuilder.append("int ").append(k.name()).append(" = ").append(k.getASCII()).append(";\n");
@@ -49,37 +49,30 @@ public class Generator {
         StringBuilder sb = new StringBuilder();
         sb.append("void combo() {\n");
         Move lastMove = null;
+        int delay = 0;
         for(Move move : combo.getMoves()) {
-            for(Keys key : move.getInput()) {
-                sb.append("\tKeyboard.press(").append(key.name()).append(");\n");
+            if(lastMove != null) {
+                if(!move.getInput().contains(Keys.DOWN)) {
+                    sb.append("\tKeyboard.release(DOWN);\n");
+                }
+                delay = Math.max(1, lastMove.getActive() + lastMove.getHitstun());
+                sb.append("\tdelay(").append(delay/2f).append(" * frameLength + 2);\n");
             }
-            sb.append("\tdelay(").append(Math.max(1, (1/2f) * move.getStartup())).append("L * frameLength + 6);\n");
-            sb.append("\tKeyboard.releaseAll();\n");
-
-            sb.append("\tdelay(").append(Math.max(1, (1/2f) * move.getStartup()) + move.getHitstop()).append("L * frameLength + 6);\n");
-
-            lastMove = move;
-        }
-
-        sb.append("}");
-        fw.append(sb.toString());
-    }
-
-    private void createComboOld(Combo combo) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        sb.append("void combo() {\n");
-        Move lastMove = null;
-        for(Move move : combo.getMoves()) {
-            sb.append("\tdelay(").append(lastMove == null || move.getInput().contains(Keys.UP) || move.getInput().contains(Keys.E)
-                    ? move.getStartup() : move.getStartup() + lastMove.getHitstop()/2 ).append("L * frameLength);\n");
             for(Keys key : move.getInput()) {
                 sb.append("\tKeyboard.press(").append(key.name()).append(");\n");
             }
 
-            //sb.append("\tdelay(1L * frameLength + 5);\n");
-            sb.append("\tdelay(").append(lastMove == null || move.getInput().contains(Keys.UP) || move.getInput().contains(Keys.E)
-                    ? 2 : 1 + lastMove.getHitstop()/2).append("L * frameLength);\n");
-            sb.append("\tKeyboard.releaseAll();\n");
+            sb.append("\tdelay((1.0");
+            if(lastMove != null) {
+                sb.append(" + ").append(delay/2f);
+            }
+            sb.append(") * frameLength + 2);\n");
+
+            for(Keys key : move.getInput()) {
+                if(!key.name().equals(Keys.DOWN.name())) {
+                    sb.append("\tKeyboard.release(").append(key.name()).append(");\n");
+                }
+            }
 
             lastMove = move;
         }

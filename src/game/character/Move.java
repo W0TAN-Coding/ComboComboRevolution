@@ -9,11 +9,14 @@ import java.util.Set;
 public class Move {
     private final Set<Keys> input;
     private final int startup;
-    private final int hitstop;
+    private final int active;
+    private final int hitstun;
 
-    public Move(int startup, int hitstop, Keys... input) {
-        this.startup = startup;
-        this.hitstop = hitstop;
+    public Move(int startup, int active, int hitstun, Keys... input) {
+        // Calculate True Startup and use this as Startup value
+        this.startup = startup + 1;
+        this.active = active;
+        this.hitstun = hitstun;
         this.input = new HashSet<>(Arrays.asList(input));
     }
 
@@ -25,7 +28,11 @@ public class Move {
         return startup;
     }
 
-    public int getHitstop() {
-        return hitstop;
+    public int getHitstun() {
+        return hitstun;
+    }
+
+    public int getActive() {
+        return active;
     }
 }
