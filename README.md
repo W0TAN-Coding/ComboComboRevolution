@@ -6,7 +6,7 @@ Jump Startup: 4f
 
 Frame 1: Button is read
 Frame 2-6: Startup
-Frame 7-14: Cancellable
+Frame 7-14 (8): Cancellable
 
 ###F-Aoko 5A > 5C
 5A Startup: 4  Hitstop: 6
@@ -14,7 +14,7 @@ Frame 7-14: Cancellable
 
 Frame 1: Button is read
 Frame 2-6: Startup
-Frame 7-10: Cancellable
+Frame 7-10 (4): Cancellable
 
 ### F-Aoko 5A > 2C
 5A Startup: 4 Hitstop: 6
@@ -22,7 +22,7 @@ Frame 7-10: Cancellable
 
 Frame 1: Button is read
 Frame 2-6: Startup
-Frame 7-15: Cancellable
+Frame 7-14 (8): Cancellable
 
 ### F-Aoko 2A > 2C
 2A Startup: 3 Hitstop: 6
@@ -30,7 +30,7 @@ Frame 7-15: Cancellable
 
 Frame 1: Button is read
 Frame 2-5: Startup
-Frame 6-13: Cancellable (Need to hold down DOWN)
+Frame 6-13 (8): Cancellable (Need to hold down DOWN)
 
 ### F-Aoko 2A > 5C
 2A Startup: 3 Hitstop: 6
@@ -38,4 +38,4 @@ Frame 6-13: Cancellable (Need to hold down DOWN)
 
 Frame 1: Button is read
 Frame 2-5: Startup
-Frame 6-9: Cancellable
+Frame 6-9 (4): Cancellable
