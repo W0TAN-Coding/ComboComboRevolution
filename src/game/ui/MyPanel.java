@@ -47,7 +47,7 @@ public class MyPanel extends JPanel implements Runnable {
         symbols = new EnumMap<>(Keys.class);
         loadSymbols();
         loadCombo(c);
-        setBackground(Color.GREEN);
+        setBackground(new Color(0xb00b69));
 
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
     }
@@ -60,6 +60,7 @@ public class MyPanel extends JPanel implements Runnable {
         sA = new StaticSymbol(new ImageIcon("src/resources/A.png").getImage(), Keys.A, 400);
         sB = new StaticSymbol(new ImageIcon("src/resources/B.png").getImage(), Keys.B, 500);
         sC = new StaticSymbol(new ImageIcon("src/resources/C.png").getImage(), Keys.C, 600);
+        sE = new StaticSymbol(new ImageIcon("src/resources/E.png").getImage(), Keys.E, 700);
         symbols.put(Keys.LEFT, sLEFT);
         symbols.put(Keys.RIGHT, sRIGHT);
         symbols.put(Keys.UP, sUP);
@@ -67,6 +68,7 @@ public class MyPanel extends JPanel implements Runnable {
         symbols.put(Keys.A, sA);
         symbols.put(Keys.B, sB);
         symbols.put(Keys.C, sC);
+        symbols.put(Keys.E, sE);
     }
 
     public void loadCombo(Combo combo) {

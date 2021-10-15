@@ -24,8 +24,9 @@ public class MyFrame extends JFrame {
         Move mAT = new Move(1, 1, 0, Keys.RIGHT, Keys.E);
 
         Combo combo = new Combo(m2A, m5B, m2B, m2C);
+        Combo full = new Combo(m2A, m5B, m2B, m2C, m3C, mj9, maB, maC, mj9, maB, maC, mAT);
 
-        add(new MyPanel(combo));
+        add(new MyPanel(full));
 
         setSize(1500, 1000);
         setResizable(false);
