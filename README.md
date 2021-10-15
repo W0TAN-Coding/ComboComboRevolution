@@ -6,7 +6,7 @@ Frame 1: Button is read
 
 Frame 2-(True Startup + 1): Startup
 
-Frame (True Startup + 2)-(True Startup + 2 + (Active Frames + Hitstun - Next Move Startup))
+Frame (True Startup + 2)-(True Startup + 1 + (Active Frames + Hitstun - Next Move Startup))
 
 ###F-Aoko 5A > 5B
 5A Startup: 4 Active: 4 Hitstun: 11 Hitstop: 6
