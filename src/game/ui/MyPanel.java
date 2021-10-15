@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Timer;
 
 public class MyPanel extends JPanel implements Runnable {
-    private final int TICK_MODIFIER = 5;
+    private final int TICK_MODIFIER = 4;
     private final int HEIGHT = 1000;
     private final int WIDTH = 1500;
     private final int DELAY = 17;
@@ -133,6 +133,9 @@ public class MyPanel extends JPanel implements Runnable {
     private void cycle() {
         for(DynamicSymbol s : sequence) {
             s.moveUp();
+            if(s.getY() + (s.getSize()/2)*TICK_MODIFIER < BASE_OFFSET) {
+                s.press();
+            }
         }
     }
 
