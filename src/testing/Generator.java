@@ -49,25 +49,25 @@ public class Generator {
         StringBuilder sb = new StringBuilder();
         sb.append("void combo() {\n");
         Move lastMove = null;
-        int delay = 0;
+        float delay = 0;
         for(Move move : combo.getMoves()) {
             if(lastMove != null) {
                 if(!move.getInput().contains(Keys.DOWN)) {
                     sb.append("\tKeyboard.release(DOWN);\n");
                 }
-                delay = Math.max(1, lastMove.getActive() + lastMove.getHitstun());
-                sb.append("\tdelay(").append(delay/2f).append(" * frameLength + 2);\n");
+                delay = Math.max(1f, lastMove.getStartup() - lastMove.getHeldFrames() + lastMove.getActive() + lastMove.getHitstun());
+                sb.append("\tdelay(").append(delay/2f).append(" * frameLength);\n");
             }
+
+            // PRESS DOWN
             for(Keys key : move.getInput()) {
                 sb.append("\tKeyboard.press(").append(key.name()).append(");\n");
             }
 
-            sb.append("\tdelay((1.0");
-            if(lastMove != null) {
-                sb.append(" + ").append(delay/2f);
-            }
-            sb.append(") * frameLength + 2);\n");
+            // HOLD KEY
+            sb.append("\tdelay(").append(move.getHeldFrames()).append(" * frameLength);\n");
 
+            // RELEASE
             for(Keys key : move.getInput()) {
                 if(!key.name().equals(Keys.DOWN.name())) {
                     sb.append("\tKeyboard.release(").append(key.name()).append(");\n");
